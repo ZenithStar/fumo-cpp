@@ -1,0 +1,9 @@
+[submodule "phtree-cpp"]
+	path = phtree-cpp
+	url = https://github.com/tzaeschke/phtree-cpp.git
+[submodule "godot-cpp"]
+	path = godot-cpp
+	url = https://github.com/godotengine/godot-cpp
+[submodule "fumo"]
+	path = fumo
+	url = https://github.com/ZenithStar/fumo.git
