@@ -4,9 +4,9 @@ import sys
 
 env = SConscript("godot-cpp/SConstruct")
 
-godot_project_name = "fomu"
-addon_path = "/addons/ph-tree/"
-gdextension_name = "gdexample"
+godot_project_name = "fumo"
+addon_path = "/addons/phtree/bin/"
+gdextension_name = "phtree"
 
 # For reference:
 # - CCFLAGS are compilation flags shared between C and C++
