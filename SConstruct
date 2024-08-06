@@ -17,7 +17,7 @@ gdextension_name = "phtree"
 # - LINKFLAGS are for linking flags
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/"])
+env.Append(CPPPATH=["phtree-cpp/include/", "src/"])
 sources = Glob("src/*.cpp")
 
 if env["platform"] == "macos":
