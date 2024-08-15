@@ -1,6 +1,9 @@
 #include "register_types.h"
 
 #include "phtree.h"
+#include "phtree_point.h"
+#include "ph_cluster_seperation.h"
+#include "chase_player.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -13,7 +16,10 @@ void initialize_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
-	GDREGISTER_CLASS(PHTree);
+	GDREGISTER_RUNTIME_CLASS(PHTree);
+	GDREGISTER_RUNTIME_CLASS(PHTreePointXZ);
+	GDREGISTER_RUNTIME_CLASS(PHClusterSeperation);
+	GDREGISTER_RUNTIME_CLASS(ChasePlayer);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level) {
