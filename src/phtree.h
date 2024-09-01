@@ -40,6 +40,17 @@ using PhTreeGDVector2 = PhTreeD<2, godot::Node*, ConverterGD2>;
 
 struct DistanceEuclideanGD {
     double operator()(const godot::Vector2& p1, const godot::Vector2& p2) const noexcept {
+        return p1.distance_to(p2);
+    };
+};
+class DistanceMomentumGD {
+  private:
+  	godot::Vector2 momentum;
+  public:
+	DistanceMomentumGD(godot::Vector2 p_momentum = godot::Vector2()):  momentum(p_momentum) {}
+    double operator()(const godot::Vector2& p1, const godot::Vector2& p2) const noexcept {
+        // copied from the old DistanceEuclideanGD
+        // TODO make it do the thing
         double sum2 = 0;
         double x2 = p1.x - p2.x;
         double y2 = p1.y - p2.y;
@@ -48,6 +59,8 @@ struct DistanceEuclideanGD {
         return sqrt(sum2);
     };
 };
+
+using FilterSphereGD = FilterSphere<ConverterGD2, DistanceEuclideanGD>;
 
 } // namespace improbable::phtree
 
@@ -75,6 +88,7 @@ public:
 	Node* get_nearest(Vector2 p_position);
 	TypedArray<Node> get_k_nearest(int k, Vector2 p_position );
 	TypedArray<Node> get_window(Rect2 p_box );
+	TypedArray<Node> get_radius( Vector2 p_position, real_t p_radius );
 
 };
 } // namespace godot

@@ -46,6 +46,21 @@ TypedArray<Node> PHTree::get_window(Rect2 p_box ){
 	return output;
 }
 
+TypedArray<Node> PHTree::get_radius( Vector2 p_position, real_t p_radius ){
+	TypedArray<Node> output = new TypedArray<Node>();
+	Rect2 p_box(p_position - p_radius*Vector2(1.0,1.0), p_radius*Vector2(2.0,2.0));
+	for (auto it = tree.begin_query( p_box , 
+			improbable::phtree::FilterSphereGD(
+				p_position, p_radius, 
+				improbable::phtree::ConverterGD2(), 
+				improbable::phtree::DistanceEuclideanGD()
+				)
+			); it != tree.end(); ++it){
+		output.push_back(*it);
+	}
+	return output;
+}
+
 void PHTree::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("insert_node", "position", "node"), &PHTree::insert_node);
 	ClassDB::bind_method(D_METHOD("relocate_node", "old_position", "new_position"), &PHTree::relocate_node);
@@ -53,4 +68,5 @@ void PHTree::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_nearest", "position"), &PHTree::get_nearest);
 	ClassDB::bind_method(D_METHOD("get_k_nearest", "k", "position"), &PHTree::get_k_nearest);
 	ClassDB::bind_method(D_METHOD("get_window", "box"), &PHTree::get_window);
+	ClassDB::bind_method(D_METHOD("get_radius", "position", "radius"), &PHTree::get_radius);
 }

@@ -50,8 +50,7 @@ void PHClusterSeperation::_ready( ) {
 }
 
 void PHClusterSeperation::_physics_process( double delta ) {
-	Rect2 query(get_position_2d() + position_offset, query_size);
-	TypedArray<Node> neighbors = phtree->get_window( query );
+	TypedArray<Node> neighbors = phtree->get_radius( get_position_2d(), radius );
 	Vector3 control_position = control_target->get_global_position();
 	Vector3 aggregate_offsets = Vector3();
 	for(int i = 0; i < neighbors.size(); i++){
