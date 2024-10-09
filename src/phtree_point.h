@@ -15,10 +15,12 @@ class PHTreePointXZ : public Node3D {
 private:
     Vector2 last_position;
     String phtree_name;
+    bool active;
     PHTree* phtree;
 
 protected:
     void register_to_phtree();
+    void unregister_from_phtree();
     Vector2 get_position_2d();
 	static void _bind_methods();
     //void _notification( int p_what ) ;
@@ -28,6 +30,8 @@ public:
 	~PHTreePointXZ();
     String get_phtree_name();
     void set_phtree_name(String p_phtree_name);
+    bool get_active();
+    void set_active(bool p_active);
     void _ready( ) override;
     void _exit_tree( ) override;
     void _physics_process( double delta ) override;
